@@ -1,40 +1,102 @@
 import React, { useEffect, useState } from 'react';
-import socketIOClient from 'socket.io-client';
+import io from 'socket.io-client';
+import throttle from 'lodash/throttle';
+import ReactDOM from 'react-dom'
+
+
+const Cursor = ({ x, y, color}) => {
+	return (
+		<div
+			style={{
+				position: 'absolute',
+				top: y,
+				left: x,
+				width: '10px',
+				height: '10px',
+				backgroundColor: color,
+				borderRadius: '10%',
+				pointerEvents: 'none'
+			}}
+		/>
+	);
+}
+
+const Cursors = ({ cursors }) => {
+	return ReactDOM.createPortal(
+		<>
+		{
+			Object.entries(cursors).map(([id, cursor]) => (
+				<Cursor key={id} x={cursor.x} y={cursor.y} color={cursor.color} />
+			))
+		}
+		</>,
+		document.body
+	)
+}
+
 
 const App = () => {
-  const [socket, setSocket] = useState(null);
-  const [cursorPositions, setCursorPositions] = useState({});
-
+  const [cursors, setCursors] = useState({});
+  
   useEffect(() => {
-    const newSocket = socketIOClient('http://localhost:3001');
-    setSocket(newSocket);
+    const socket = io('http://localhost:3001');
+    const endpoint = window.location.pathname || '/home';
+	let connected = false;
 
-    newSocket.on('cursorPosition', (data) => {
-      setCursorPositions(prev => ({ ...prev, [data.userId]: data.position }));
+	// join room and set connected
+	socket.emit('join', { endpoint }, (success) => {
+		if (success) {
+			connected = true;
+		}
+	}); 
+
+	// get mouse updates
+    socket.on('mouseUpdate', (data) => {
+		console.log(`Got mouse update with payload: ${JSON.stringify(data)}`)
+		setCursors(prev => ({ 
+			...prev,
+			[data.id]: { x: data.x, y: data.y, color: data.color }}));
     });
 
+	// get user leave events
+	socket.on('userLeft', (id) => {
+		setCursors(prev => {
+			const newCursors = { ...prev }
+			delete newCursors[id];
+			return newCursors;
+		})
+	});
+
+	// update backend with mouse movements
+	const handleMouseMove = throttle(event => {
+		if (connected) {
+			const x = event.pageX;
+			const y = event.pageY;
+			socket.emit('mouseMove', { x, y });
+			// console.log('mouse moving update sent');
+		}
+	}, 50);
+
+	// event listener for mouse updates
+	document.addEventListener('mousemove', handleMouseMove);
+
+	// clean up on unmount
     return () => {
-      newSocket.disconnect();
+		document.removeEventListener('mousemove', handleMouseMove);
+		handleMouseMove.cancel();
+		socket.disconnect();
     };
   }, []);
 
-  const handleMouseMove = (e) => {
-    if (socket) {
-      const position = { x: e.clientX, y: e.clientY };
-      socket.emit('cursorPosition', { userId: 'me', position });
-    }
-  };
-
   return (
-    <div onMouseMove={handleMouseMove}>
-      {/* Your resume content here */}
-      {Object.keys(cursorPositions).map(userId => {
-        if (userId !== 'me') {
-          const { x, y } = cursorPositions[userId];
-          return <div key={userId} style={{ position: 'absolute', left: x, top: y, width: 10, height: 10, background: 'red' }}></div>;
-        }
-        return null;
-      })}
+    <div className="vladk.top">
+      <header className="app-header">
+		<div style={{ height: '100vh', position: 'relative' }}>
+			<h1>Wowza.</h1>
+			<p>See everyone's cursors!</p>
+			<Cursors cursors={cursors}/>
+			</div>
+      </header>
     </div>
   );
 };
