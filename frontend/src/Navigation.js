@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaArrowUp, FaSun, FaMoon, FaTerminal } from 'react-icons/fa'; // Using react-icons for icons
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 // Styled components
 const NavBar = styled.nav`
@@ -8,7 +9,7 @@ const NavBar = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  height: 2rem;
+  height: 5vh;
   background-color: #21252a;
   padding: 1rem 15%; // Empty space left and right
   display: flex;
@@ -43,12 +44,11 @@ const NavRight = styled.div`
   gap: 1.5rem;
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(Link)`
   color: #e0e0e0;
   text-decoration: none;
   font-size: 1rem;
-  padding-right: 2rem;
-
+  margin: 0 1rem; // padding-right: 2rem;
   span {
     color: #ff5555;
     font-weight: bold;
@@ -109,15 +109,11 @@ const Navigation = () => {
       </NavLeft>
       
       <NavRight>
-        <NavLink href="#about">
-          <span>a</span>bout
-        </NavLink>
-        <NavLink href="#work">
-          <span>w</span>ork
-        </NavLink>
-        <NavLink href="#projects">
-          <span>p</span>rojects
-        </NavLink>
+        <nav>
+            <NavLink to="/about"><span>a</span>bout</NavLink>
+            <NavLink to="/work"><span>w</span>ork</NavLink>
+            <NavLink to="/projects"><span>p</span>rojects</NavLink>
+        </nav>
         
         <Divider />
         

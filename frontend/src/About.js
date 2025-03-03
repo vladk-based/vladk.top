@@ -59,7 +59,7 @@ const RightContent = styled.div`
   width: 30%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: right; // makes the button fill up more space
   gap: 1.5rem;
 `;
 
