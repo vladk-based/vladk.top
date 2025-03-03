@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import throttle from 'lodash/throttle';
+import styled from 'styled-components';
 import ReactDOM from 'react-dom'
 
 import Navigation from './Navigation';
@@ -18,6 +19,7 @@ const Cursor = ({ x, y, color }) => {
 				height: '20px',
 				pointerEvents: 'none',
 				transform: 'translate(-50%, -50%)',
+				zIndex: 1000
 			}}
 		>
 			<svg
@@ -50,11 +52,20 @@ const Cursors = ({ cursors }) => {
 	)
 }
 
+const Container = styled.section`
+	overflow: hidden;
+	scrollbar-width: none;
+`
+
 
 const App = () => {
   const [cursors, setCursors] = useState({});
   
   useEffect(() => {
+	// remove sidebar
+	document.body.style.overflow = "hidden";
+
+	// socket connection
     const socket = io('http://localhost:3001');
     const endpoint = window.location.pathname || '/home';
 	let connected = false;
@@ -107,12 +118,11 @@ const App = () => {
   }, []);
 
   return (
-	<body>
-		<div className="vladk.top">
-			<Navigation />
-			<About />
-		</div>
-	</body>
+	<Container className="vladk.top">
+		<Navigation />
+		<About />
+		<Cursors cursors={cursors}/>
+	</Container>
   );
 };
 

@@ -4,13 +4,12 @@ import { FaGithub, FaLinkedin, FaInstagram, Fa500Px } from 'react-icons/fa';
 // Styled components
 const AboutSection = styled.section`
   background-color: #21252a;
-  padding: 4rem 10%; // Same margins as nav
-  min-height: 100vh;
+  padding: 4rem 15%;
+  min-height: 90vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Aptos', 'Fira Code', monospace; // Aptos first, falls back to Fira Code
-  overflow: hidden; // No scrolling
+  font-family: 'Aptos', 'Fira Code', monospace;
 `;
 
 const LeftContent = styled.div`
@@ -100,7 +99,7 @@ const About = () => {
       </LeftContent>
 
       <RightContent>
-        <SocialButton href="https://github.com/yourusername" target="_blank">
+        <SocialButton href="https://github.com/vladk-based" target="_blank">
           <FaGithub /> github
         </SocialButton>
         <SocialButton href="https://linkedin.com/in/yourusername" target="_blank">

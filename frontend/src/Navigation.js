@@ -4,14 +4,17 @@ import styled from 'styled-components';
 
 // Styled components
 const NavBar = styled.nav`
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  height: 2rem;
   background-color: #21252a;
   padding: 1rem 15%; // Empty space left and right
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
+  z-index: 10;
   font-family: 'Fira Code', monospace;
 `;
 
