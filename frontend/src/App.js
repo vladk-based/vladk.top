@@ -5,9 +5,9 @@ import throttle from 'lodash/throttle';
 import ReactDOM from 'react-dom'
 
 import Navigation from './Navigation';
-import About from './About';
-import Work from './Work';
-import Projects from './Projects';
+import About from './pages/About';
+import Work from './pages/Work';
+import Projects from './pages/Projects';
 
 
 const Cursor = ({ x, y, color }) => {
