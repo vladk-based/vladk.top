@@ -23,8 +23,6 @@ app.use(
 );
 
 
-
-
 const getRandomColor = () => {
     const colors = [
         "red", "blue", "yellow", "green", "orange", "purple", "pink", "brown",
@@ -73,9 +71,9 @@ io.on('connection', (socket) => {
 
 		// find the peer
 		const peer = peers.get(socket.id);
-		console.log(peer);
 		if (!peer) {
 			console.error('This connection was not saved in memory :(');
+			return;
 		}
 
 		// update memory
@@ -83,7 +81,7 @@ io.on('connection', (socket) => {
 		peers.set(socket.id, updated);
 
 		// send an update to all the friends
-		console.log(`sending mouseUpdate to room ${peer.room} with payload ${JSON.stringify(data)}`);
+		// console.log(`sending mouseUpdate to room ${peer.room} with payload ${JSON.stringify(data)}`);
 		socket.to(peer.room).emit('mouseUpdate', updated);
 	});
 

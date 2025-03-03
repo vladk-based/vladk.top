@@ -3,8 +3,11 @@ import io from 'socket.io-client';
 import throttle from 'lodash/throttle';
 import ReactDOM from 'react-dom'
 
+import Navigation from './Navigation';
+import About from './About';
 
-const Cursor = ({ x, y, color}) => {
+
+const Cursor = ({ x, y, color }) => {
 	return (
 		<div
 			style={{
@@ -57,15 +60,17 @@ const App = () => {
 	let connected = false;
 
 	// join room and set connected
-	socket.emit('join', { endpoint }, (success) => {
-		if (success) {
-			connected = true;
-		}
-	}); 
+	socket.on('connect', () => {
+		socket.emit('join', { endpoint }, (success) => {
+			if (success) {
+				connected = true;
+			}
+		});
+	});
 
 	// get mouse updates
     socket.on('mouseUpdate', (data) => {
-		console.log(`Got mouse update with payload: ${JSON.stringify(data)}`)
+		console.log(`Got mouse update with payload: ${JSON.stringify(data)}`);
 		setCursors(prev => ({ 
 			...prev,
 			[data.id]: { x: data.x, y: data.y, color: data.color }}));
@@ -102,15 +107,12 @@ const App = () => {
   }, []);
 
   return (
-    <div className="vladk.top">
-      <header className="app-header">
-		<div style={{ height: '100vh', position: 'relative' }}>
-			<h1>Wowza.</h1>
-			<p>See everyone's cursors!</p>
-			<Cursors cursors={cursors}/>
-			</div>
-      </header>
-    </div>
+	<body>
+		<div className="vladk.top">
+			<Navigation />
+			<About />
+		</div>
+	</body>
   );
 };
 
