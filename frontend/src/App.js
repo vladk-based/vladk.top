@@ -77,10 +77,10 @@ const App = () => {
 		
 		// get mouse updates
 		socket.on('mouseUpdate', (data) => {
-			console.log(`Got mouse update with payload: ${JSON.stringify(data)}`);
+			// console.log(`Got mouse update with payload: ${JSON.stringify(data)}`);
 			setCursors(prev => ({
 				...prev,
-				[data.id]: { x: data.x, y: data.y, color: data.color }
+				[data.id]: { x: data.x * window.innerWidth, y: data.y * window.innerHeight, color: data.color }
 			}));
 		});
 			
@@ -98,7 +98,10 @@ const App = () => {
 			if (connected) {
 				const x = event.pageX;
 				const y = event.pageY;
-				socket.emit('mouseMove', { x, y });
+
+				console.log(`normalized move coords: ${event.pageX / window.innerWidth} and ${event.pageY / window.innerHeight}`);
+
+				socket.emit('mouseMove', { x: x / window.innerWidth, y: y / window.innerHeight });
 			}
 		}, 50);
 		

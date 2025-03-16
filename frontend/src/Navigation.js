@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaArrowUp, FaSun, FaMoon, FaTerminal } from 'react-icons/fa'; // Using react-icons for icons
+import { FaHome, FaSun, FaMoon, FaTerminal } from 'react-icons/fa'; // Using react-icons for icons
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -104,7 +104,7 @@ const Navigation = () => {
         <NavBar>
         <NavLeft>
             <ScrollTopButton onClick={scrollToTop} title="Back to top">
-            <FaArrowUp />
+            <FaHome />
             </ScrollTopButton>
         </NavLeft>
         

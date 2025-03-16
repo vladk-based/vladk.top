@@ -55,8 +55,8 @@ const Projects = () => {
     <>
       <GlobalStyle />
       <ProjectsContainer>
-        {projects.map((project, index) => (
-          <ProjectCard key={index} project={project} />
+        {projects.map((project) => (
+          <ProjectCard key={project.name} project={project} />
         ))}
       </ProjectsContainer>
     </>

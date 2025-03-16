@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaGithub, FaLinkedin, FaInstagram, Fa500Px } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, Fa500Px, FaEnvelope } from 'react-icons/fa';
 
 // Styled components
 const AboutSection = styled.section`
@@ -55,6 +55,7 @@ const BodyText = styled.p`
 	max-width: 80%;
 `;
 
+
 const RightContent = styled.div`
 	width: 30%;
 	display: flex;
@@ -81,6 +82,26 @@ const SocialButton = styled.a`
 	}
 `;
 
+const EmailLinkWrapper = styled.a`
+	color: #808080;
+	font-size: 1rem;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	line-height: 1;
+	max-width: 80%;
+	text-decoration: none;
+	transition: color 0.2s;
+
+	&:hover {
+		color: #606060;
+	}
+`;
+
+const EmailText = styled.span`
+  font-size: 1rem;
+`;
+
 const About = () => {
 	return (
 		<AboutSection>
@@ -91,10 +112,15 @@ const About = () => {
 					Co-Founder <Dot /> Web Dev <Dot /> Backend Architect
 				</Title>
 				<BodyText>
-					An experienced 
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod 
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
-					veniam, quis nostrud exercitation ullamco laboris.
+					Hi! I am an experienced developer with a wide toolkit. I use
+					technologies like Node and Deno, AWS suite, Docker and Kubernetes,
+					and NoSql databases to craft production-grade API solutions that
+					scale with ease.
+					<br/><br/>
+					Contact me: <EmailLinkWrapper href="mailto:krstevski.vlad@gmail.com">
+						<FaEnvelope size={14} />
+						<EmailText>krstevski.vlad@gmail.com</EmailText>
+					</EmailLinkWrapper> to chat.
 				</BodyText>
 			</LeftContent>
 			
