@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
 // Container for the projects page
 const ProjectsContainer = styled.div`
-  padding: 4rem 15%;
+  padding: 7.5rem 15%;
 `;
 
 const Projects = () => {
@@ -44,7 +44,7 @@ const Projects = () => {
     },
     {
       name: 'Westernify',
-      description: 'A way for western students to share their .',
+      description: 'A way for western students to share their music.',
       tech: ['Qt6', 'MySQL', 'C++'],
       status: 'Archived',
       image: 'https://via.placeholder.com/200x150',

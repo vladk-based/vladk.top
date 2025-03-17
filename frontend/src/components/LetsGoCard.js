@@ -8,7 +8,7 @@ const techStack = ['MongoDB', 'Node.js', 'AWS EC2', 'S3 Bucket', 'Docker'];
 
 // Styled Components
 const WorkContainer = styled.div`
-  padding: 4rem 15%;
+  padding: 7.5rem 15%;
   background-color: #21252a;
   color: #ccc;
   min-height: 100vh;
