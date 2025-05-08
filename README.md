@@ -1,2 +1,2 @@
 # vladk.top
-A little website with sockets using react and node
+A little website in development using vite, typescript, tailwindcss4 
