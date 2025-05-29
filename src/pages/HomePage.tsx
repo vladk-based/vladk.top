@@ -71,7 +71,7 @@ function HomePage() {
             stopped={true}
           />
 
-          
+          <HomeSocialIcons />
           
         </div>
       </div>
