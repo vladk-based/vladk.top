@@ -1,0 +1,6 @@
+use
+-react-use (hooks for stuff like battery percentage)
+-react-wrap-balance (for titles)
+-react-socail-icons
+-react-scroll
+-typed.js
