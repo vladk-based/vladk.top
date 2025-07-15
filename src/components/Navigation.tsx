@@ -6,7 +6,7 @@ function Navigation() {
   };
 
   return (
-    <nav className="w-full flex justify-center gap-6 px-6 py-4 backdrop-blur-md shadow-md fixed top-0 left-0 z-40">
+    <nav className="w-full flex justify-center gap-6 px-6 py-4 backdrop-blur-xl shadow-md fixed top-0 left-0 z-40">
       <button onClick={scrollToTop} title="Scroll to top" className="hover:text-blue-600 transition-colors">
         <ArrowUp size={24} />
       </button>

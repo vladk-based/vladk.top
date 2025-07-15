@@ -5,14 +5,15 @@ import { SocialIcon } from "react-social-icons";
 
 
 
-function HomeSocialIcons() {
+function HomeSocialIcons({ className = "" }: { readonly className?: string }) {
 
 
+    return <div className={`flex gap-4 social-icons ${className}`}>
 
-    return (
-
-        <SocialIcon url='' />
-    )
+        <SocialIcon url='https://www.instagram.com/vladistev9/' className='social-icon' />
+        <SocialIcon url='https://linkedin.com/in/krstevski-vlad/' className='social-icon' />
+        <SocialIcon url='https://github.com/vladk-based/' className='social-icon' />
+    </div>;
 
 };
 

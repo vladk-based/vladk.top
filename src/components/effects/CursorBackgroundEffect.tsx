@@ -13,7 +13,7 @@ function CursorBackgroundEffect({ className = "", style = {} }: CursorBackground
       if (lightRef.current) {
         const x = e.clientX;
         const y = e.clientY;
-        lightRef.current.style.background = `radial-gradient(600px at ${x}px ${y}px, rgba(29, 78, 216, 0.15), transparent 80%)`;
+        lightRef.current.style.background = `radial-gradient(400px at ${x}px ${y}px, rgba(29, 78, 216, 0.125), transparent 90%)`;
       }
     };
     window.addEventListener("mousemove", handleMouseMove);
@@ -23,7 +23,7 @@ function CursorBackgroundEffect({ className = "", style = {} }: CursorBackground
   return (
     <div
       ref={lightRef}
-      className={`pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute ${className}`}
+      className={`pointer-events-none fixed inset-0 z-30 transition duration-300  ${className}`}
       style={{
         background: "radial-gradient(600px at 50vw 50vh, rgba(29, 78, 216, 0.15), transparent 80%)",
         ...style,
