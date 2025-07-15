@@ -22,7 +22,7 @@ const jobs: Job[] = [
         "Integrated Stripe's payment processing under PCI DSS compliance.",
         "Deployed a CMS panel using React to manually control transactions for administrators and prevent abuse",
     ],
-    image: "/public/fpm.png"
+    image: "/fpm.png"
   },
   {
     title: "Backend Lead",
@@ -36,7 +36,7 @@ const jobs: Job[] = [
         "Implemented docker and git actions CI/CD pipeline for automated tests, builds and deployments.",
         "Deployed a CMS panel using Vue.js and Quasar framework for content management and analytics."
     ],
-    image: "/public/tlga.png"
+    image: "/tlga.png"
   }
 ];
 
